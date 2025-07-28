@@ -1,0 +1,88 @@
+Guía Paso a Paso: Escaneo de Vulnerabilidades Web con Nikto
+
+Objetivo: Aprender a usar Nikto para detectar vulnerabilidades en servidores web, incluyendo configuraciones inseguras, archivos ocultos, y versiones desactualizadas de software.
+
+Paso 1: Abrir la terminal en Kali Linux
+
+Usa Ctrl + Alt + T o búscala en el menú de aplicaciones.
+
+Paso 2: Identificar el objetivo
+
+Asegúrate de tener la dirección IP o URL del servidor web que quieres escanear.
+
+Ejemplo: http://192.168.1.5 o http://example.com
+
+Paso 3: Escaneo básico
+
+nikto -h http://192.168.1.5
+
+-h: Define el host objetivo.
+
+Este escaneo detecta configuraciones comunes y vulnerabilidades básicas.
+
+Paso 4: Escaneo con HTTPS
+
+nikto -h https://192.168.1.5
+
+Usa este comando si el sitio usa cifrado SSL/TLS.
+
+Paso 5: Guardar resultados
+
+nikto -h http://192.168.1.5 -output resultado_nikto.txt
+
+Guarda el escaneo en un archivo legible.
+
+Paso 6: Usar opciones de sintonización (tuning)
+
+nikto -h http://192.168.1.5 -Tuning 123bde
+
+-Tuning: Selecciona tipos de pruebas específicas.
+
+Ejemplo de categorías:
+
+1: Archivos interesantes
+
+2: Archivos de configuración
+
+3: Archivos de ejecución remota
+
+b: Archivos de respaldo
+
+d: Directorios
+
+e: Archivos con posibles fallas
+
+Puedes ver todas las opciones con:
+
+nikto -Tuning ?
+
+Paso 7: Especificar puerto
+
+nikto -h http://192.168.1.5 -p 8080
+
+Para escanear un servidor en un puerto no estándar.
+
+Paso 8: Forzar modo SSL en puertos personalizados
+
+nikto -h 192.168.1.5 -p 8443 -ssl
+
+Utiliza esto si el servidor está escuchando SSL en un puerto distinto al 443.
+
+Paso 9: Verificar headers y cookies
+
+nikto -h http://192.168.1.5 -C all
+
+Verifica la seguridad de cookies y cabeceras HTTP.
+
+Paso 10: Interpretar los resultados
+
+Archivos o directorios sensibles expuestos.
+
+Software con versiones vulnerables.
+
+Configuraciones inseguras del servidor web.
+
+Falta de cabeceras de seguridad (X-Frame-Options, HSTS, etc.)
+
+Recomendación: Realiza pruebas sobre servidores que controles o entornos de laboratorio (como DVWA, Metasploitable, OWASP BWA). Nunca escanees servidores sin autorización. 
+Preciso de que no me hago responsable del uso indebido o fuera de la ley, esto se elaboro con fines educativo . 
